@@ -73,3 +73,17 @@ class Enrollment(models.Model):
     id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Student_details, on_delete=models.CASCADE)
     year_of_study_id = models.ForeignKey(Year_of_study, on_delete=models.CASCADE)
+
+
+class Grades(models.Model):
+    id = models.AutoField(primary_key=True)
+    student_id = models.ForeignKey(Student_details, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    grade = models.IntegerField()
+
+
+class CourseProposition(models.Model):
+    id = models.AutoField(primary_key=True)
+    teacher_id = models.ForeignKey(Teacher_details, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+
