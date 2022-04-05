@@ -13,9 +13,21 @@ const fields = [
         label:'password',
         defaultValue: ''
     },
+    {
+        label:'email',
+        defaultValue:''
+    },
+    {
+        label:'first_name',
+        defaultValue:''
+    },
+    {
+        label:'last_name',
+        defaultValue:''
+    }
 ]
 
-const LoginPage = (props) => {
+const RegisterPage = (props) => {
     const { handleSubmit, reset, setValue, control } = useForm();
 
     const validateData = (data) => {
@@ -34,11 +46,12 @@ const LoginPage = (props) => {
         if(error) {
             alert(error)
         }else {
-            userRepository.loginUser({username:data.username, password:data.password}).then(resp => {
+            userRepository.registerUser(data.username, data.password, data.email, data.first_name, data.last_name).then(resp => {
+                console.log(resp)
                 if(resp)
-                    alert('User logged in')
+                    alert('User registered')
                 else
-                    alert("There was an error while logging in")
+                    alert("There was an error while registering")
             })
         }
     }
@@ -46,7 +59,7 @@ const LoginPage = (props) => {
     return (
         <Stack spacing={4} justifyContent={'center'} alignItems={'center'}>
             <Typography>
-                Login
+                Register
             </Typography>
             <form onSubmit={handleSubmit((data)=>{handleLogin(data)})}>
                 <Stack spacing={2}>
@@ -63,11 +76,11 @@ const LoginPage = (props) => {
                             control={control}
                         />
                     )}
-                    <Button variant={'outlined'} type='submit'>Login</Button>
+                    <Button variant={'outlined'} type='submit'>Register</Button>
                 </Stack>
 
             </form>
         </Stack>
     )
 }
-export default LoginPage;
+export default RegisterPage;

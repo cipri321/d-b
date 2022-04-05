@@ -9,6 +9,7 @@ import {
 import {theme} from "./theme";
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import LoginPage from "./pages/loginPage";
+import RegisterPage from './pages/registerPage';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/login' element={<LoginPage/>}/>
-            {/*<Route path='/register' element={<RegisterPage/>} />*/}
+            <Route path='/register' element={<RegisterPage/>} />
             {/*<Route path="*" element={<PageNotFound/>} />*/}
           </Routes>
 
