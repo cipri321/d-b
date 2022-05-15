@@ -10,6 +10,10 @@ import {theme} from "./theme";
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import LoginPage from "./pages/loginPage";
 import RegisterPage from './pages/registerPage';
+import Dashboard from "./pages/dashboard";
+import ProfilePage from "./pages/ProfilePage";
+import Grades from "./pages/grades";
+import ContractPage from "./pages/contractPage";
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
           <Routes>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>} />
+            <Route path='/dashboard' element={<Dashboard/>} />
+            <Route path='/profile' element={<ProfilePage/>} />
+            <Route path='/grades' element={<Grades/>} />
+            <Route path='/contract' element={<ContractPage/>}/>
             {/*<Route path="*" element={<PageNotFound/>} />*/}
           </Routes>
 

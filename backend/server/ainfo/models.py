@@ -1,9 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 class Example(models.Model):
     id = models.AutoField(primary_key=True)
+
+class Group(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=10)
 
 
 class Student_details(models.Model):
@@ -17,18 +22,17 @@ class Titles(models.Model):
     name = models.CharField(max_length=50)
 
 
+class Faculty(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
+
 class Teacher_details(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     title_id = models.ForeignKey(Titles, on_delete=models.CASCADE)
-
-
-class Faculty(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    chief_of_department_id = models.ForeignKey(Teacher_details, on_delete=models.CASCADE)
+    chief_of_department = models.BooleanField()
 
 
 class Year_of_study(models.Model):
