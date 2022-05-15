@@ -89,7 +89,7 @@ def enrol_student(request):
         if request.method == 'POST':
             body = json.loads(request.body.decode('utf-8'))
             year_of_study = body['year_of_study_id']
-            enrollment = Enrollment(student_id=Student_details.objects.get(user_id=request.user), year_of_study_id=year_of_study)
+            enrollment = Enrollment(student_id=Student_details.objects.get(user_id=request.user), year_of_study_id=Year_of_study.objects.get(id=year_of_study))
             enrollment.save()
             return Response(status=status.HTTP_200_OK, data=model_to_dict(enrollment))
 
@@ -105,7 +105,7 @@ def enrol_student(request):
 def get_curriculum(request):
     try:
         if request.method == 'GET':
-            curriculum = Curriculum.objects.get(year_of_study_id=Student_details.objects.get(user_id=request.user).year_of_study)
+            curriculum = Curriculum.objects.get(year_of_study_id=Enrollment.objects.get(student_id=Student_details.objects.get(user_id=request.user)).year_of_study_id)
             course_list = serializers.serialize('json', curriculum.courses.all())
             return Response(status=status.HTTP_200_OK, data=course_list)
 
