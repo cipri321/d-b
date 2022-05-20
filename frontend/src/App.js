@@ -14,6 +14,7 @@ import Dashboard from "./pages/dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import Grades from "./pages/grades";
 import ContractPage from "./pages/contractPage";
+import EnrollmentPage from "./pages/enrollment";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/profile' element={<ProfilePage/>} />
             <Route path='/grades' element={<Grades/>} />
             <Route path='/contract' element={<ContractPage/>}/>
+            <Route path='/enroll' element={<EnrollmentPage/>}/>
             {/*<Route path="*" element={<PageNotFound/>} />*/}
           </Routes>
 

@@ -4,26 +4,32 @@ import {Box, Stack, TextField} from "@mui/material";
 
 const Profile = () => {
     const [userInfo, setUserInfo] = React.useState({
-        username:'',
-        firstName:'',
-        lastName:'',
-        email:''
+        user:{}
     });
     React.useEffect(async () => {
         let userInfo = await userRepository.getUserInfo()
-        setUserInfo({
-            username:userInfo.username,
-            firstName: userInfo.first_name,
-            lastName: userInfo.last_name,
-            email:userInfo.email
-
-        })
+        // console.log(userInfo.user)
+        setUserInfo(userInfo)
     }, [])
     return (
         <Stack spacing={3}>
             {
-                Object.keys(userInfo).map((val, idx) =>
-                    <TextField key={idx} value={userInfo[val]} disabled/>
+                Object.keys(userInfo.user).map((val, idx) =>
+                {
+                    if(['username', 'email'].includes(val))
+                        return <TextField key={idx} value={userInfo.user[val]} disabled/>
+                    return ''
+                }
+                )
+            }
+            {
+                userInfo.student_details && Object.keys(userInfo.student_details).map((val, idx) =>
+                    <TextField key={idx} value={userInfo.student_details[val]} disabled/>
+                )
+            }
+            {
+                userInfo.teacher_details && Object.keys(userInfo.teacher_details).map((val, idx) =>
+                    <TextField key={idx} value={userInfo.teacher_details[val]} disabled/>
                 )
             }
         </Stack>

@@ -10,6 +10,8 @@ import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import OptionalChooser from "../components/optionalChooser";
+import YearSelector from "../components/YearSelector";
+import {getCurriculum} from "../http/api";
 
 const ContractPage = (props) => {
     const [selectedYear, setSelectedYear] = React.useState(0);
@@ -19,38 +21,23 @@ const ContractPage = (props) => {
         2: [{id:1, name:'optionaldrept1'}, {id:1, name:'optionaldrept2'}],
     }
 
-    const options = [
-        {value:0, label:''},
-        {value:1, label: 'Facultatea de Matematica si Informatica - Anul 1'},
-        {value:2, label: 'Facultatea de Drept - Anul 2'}
-    ]
+    const [curriculum, setCurriculum] = React.useState([])
 
-    const curriculum = {
-        0:[],
-        1:[{course:'Object Oriented Programming', credits:6},
-            {course:'Operating Systems', credits:6},
-            {course:'Data structures and algorithms', credits:6},
-            {course:'Graph Algorithms', credits:6},
-            {course:'Dynamic systems', credits:6},
-        ],
-        2: [{course:'Drept21', credits:10},
-            {course:'Drepsadfat21', credits:10},
-            {course:'Dreafasfwegwgwgwgwpt21', credits:10}
-        ]
-    }
+    React.useEffect(async ()=> {
+        if (selectedYear !== 0) {
+            let cur = await getCurriculum({year_of_study_id:selectedYear})
+            setCurriculum(cur)
+        }
+    }, [selectedYear])
+
     const [optionalOrder, setOptionalOrder] = React.useState([]);
     return (
         <>
             <Navbar title='Contract'/>
 
             <Box sx={{width:'50%', margin:'auto'}}>
-                <Stack spacing={2}>
-                    <Select options={options} onChange={(val)=>{
-                        setSelectedYear(val.value)
-                    }}/>
-
-
-
+                <YearSelector onChange={(val)=>{console.log(val);setSelectedYear(val.value)}}/>
+                <Stack>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 400 }} aria-label="simple table">
                             <TableHead>
@@ -60,15 +47,19 @@ const ContractPage = (props) => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {curriculum[selectedYear].map((course) => (
-                                    <TableRow
-                                        key={course['course']}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell align="right">{course['course']}</TableCell>
-                                        <TableCell align="right">{course['credits']}</TableCell>
-                                    </TableRow>
-                                ))}
+                                {curriculum && curriculum.map((course, idx) =>
+                                    {
+                                        console.log(course)
+                                        return (<TableRow
+                                            key={idx}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell align="right">{course.fields.name}</TableCell>
+                                            <TableCell align="right">6</TableCell>
+                                        </TableRow>)
+                                    }
+
+                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>

@@ -15,9 +15,10 @@ class UserRepository {
 
 
     async getUserInfo(){
-        let userInfo = await axiosInstance.get('/ainfo/user_info/').then(resp => resp.data)
-        TokenStorage.storeUserId(userInfo.id)
-        if (userInfo.is_staff === true){
+        let userInfo = JSON.parse(await axiosInstance.get('/ainfo/user_info/').then(resp => resp.data))
+        // console.log(userInfo)
+        TokenStorage.storeUserId(userInfo.user.id)
+        if (userInfo.user.is_staff === true){
             TokenStorage.makeStaff()
         }
         return userInfo
