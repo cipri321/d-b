@@ -50,7 +50,8 @@ const ContractPage = (props) => {
                                 {curriculum && curriculum.map((course, idx) =>
                                     {
                                         console.log(course)
-                                        return (<TableRow
+                                        return (
+                                            <TableRow
                                             key={idx}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >

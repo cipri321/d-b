@@ -38,9 +38,7 @@ const Grades = () => {
                                 key={name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="right">
-                                    {idx+1}
-                                </TableCell>
+                                <TableCell align="right">{idx+1}</TableCell>
                                 <TableCell align="right">{name}</TableCell>
                                 <TableCell align="right">{grades[name]}</TableCell>
                             </TableRow>

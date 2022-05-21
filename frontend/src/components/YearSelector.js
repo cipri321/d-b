@@ -5,11 +5,11 @@ import Select from "react-select";
 const YearSelector = (props) => {
     const [years, setYears] = React.useState([])
 
-    React.useEffect(async ()=> {
-        let newYears = await getYearsOfStudy()
-        console.log(newYears)
-        setYears(newYears)
-    },[])
+    // React.useEffect(async ()=> {
+    //     let newYears = await getYearsOfStudy()
+    //     console.log(newYears)
+    //     setYears(newYears)
+    // },[])
 
     return (
         <>
