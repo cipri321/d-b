@@ -25,15 +25,8 @@ const AddOptionalsPage = () =>{
     const handleSubmit = (event) => {
         event.preventDefault();
         let newOptionals = optionals.slice();
-        let newId = 0;
-        optionals.map(
-            (opt) => {
-                if(opt.id > newId){
-                    newId = opt.id;
-                }
-            }
-        )
-        newOptionals.push({id: newId + 1,name: name, credits: credits, yearID: yearID});
+        let newId = optionals.length + 1;
+        newOptionals.push({id: newId,name: name, credits: credits, yearID: yearID});
         setOptionals(newOptionals);
     }
     return (
@@ -63,8 +56,6 @@ const AddOptionalsPage = () =>{
                     </TableBody>
                 </Table>
             </TableContainer>
-
-
             <p>Propose new optional:</p>
             <form onSubmit={handleSubmit}>
                 <input
