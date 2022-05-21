@@ -10,7 +10,7 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import {Button} from "@mui/material";
 
-const OptionalsPage = () =>{
+const AddOptionalsPage = () =>{
     const [selectedYear, setSelectedYear] = React.useState(0);
     const [optionals, setOptionals] = React.useState([
         {id: 1, name: 'VR', credits: 4, yearID: 1},
@@ -38,7 +38,7 @@ const OptionalsPage = () =>{
     }
     return (
         <>
-            <Navbar title='Optionals'/>
+            <Navbar title=' Add Optionals'/>
             <YearSelector onChange={(val)=>{console.log(val);setSelectedYear(val.value)}}/>
 
             <TableContainer component={Paper}>
@@ -91,4 +91,4 @@ const OptionalsPage = () =>{
         </>
     )
 }
-export default OptionalsPage;
+export default AddOptionalsPage;

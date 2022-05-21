@@ -47,8 +47,8 @@ const Navbar = (props) => {
     const handleContract = () => {
         window.location = '/contract'
     }
-    const handleOptionals = () => {
-        window.location = '/optionals'
+    const handleAddOptionals = () => {
+        window.location = '/addOptionals'
     }
 
     return (
@@ -97,7 +97,7 @@ const Navbar = (props) => {
                             >
                                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
                                 <MenuItem onClick={handleGrades}>Grades</MenuItem>
-                                <MenuItem onClick={handleOptionals}>Optionals</MenuItem>
+                                <MenuItem onClick={handleAddOptionals}>Add Optionals</MenuItem>
                                 <MenuItem onClick={handleContract}>Contract</MenuItem>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </Menu>

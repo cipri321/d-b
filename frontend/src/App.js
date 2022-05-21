@@ -15,7 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Grades from "./pages/grades";
 import ContractPage from "./pages/contractPage";
 import EnrollmentPage from "./pages/enrollment";
-import OptionalsPage from "./pages/optionalsPage";
+import AddOptionalsPage from "./pages/addOptionalsPage";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/profile' element={<ProfilePage/>} />
             <Route path='/grades' element={<Grades/>} />
-            <Route path='/optionals' element={<OptionalsPage/>}/>
+            <Route path='/addOptionals' element={<AddOptionalsPage/>}/>
             <Route path='/contract' element={<ContractPage/>}/>
             <Route path='/enroll' element={<EnrollmentPage/>}/>
             {/*<Route path="*" element={<PageNotFound/>} />*/}
