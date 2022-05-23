@@ -10,7 +10,8 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import {Button} from "@mui/material";
 
-import { IconName } from "react-icons/fa";
+import { AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown } from "react-icons/ai";
 
 
 const SelectOptionalsPage = () => {
@@ -31,8 +32,6 @@ const SelectOptionalsPage = () => {
             newOptionals[index-1] = aux;
             setOptionals(newOptionals);
         }
-        console.log(index);
-        console.log(optionals);
     }
 
     function moveDown(opt){
@@ -44,9 +43,6 @@ const SelectOptionalsPage = () => {
             newOptionals[index + 1] = aux;
             setOptionals(newOptionals);
         }
-        console.log(optionals.length);
-        console.log(index);
-        console.log(optionals);
     }
     return(
         <>
@@ -68,8 +64,8 @@ const SelectOptionalsPage = () => {
                     <TableBody className = "text">
                         {optionals.map((opt) => (
                             <TableRow key={opt}>
-                                <TableCell align="right"><button onClick = {() => moveUp(opt)}>^^^</button></TableCell>
-                                <TableCell align="right"><button  onClick = {() => moveDown(opt)}>...</button></TableCell>
+                                <TableCell align="right"><button onClick = {() => moveUp(opt)}><AiFillCaretUp /></button></TableCell>
+                                <TableCell align="right"><button  onClick = {() => moveDown(opt)}><AiFillCaretDown /></button></TableCell>
                                 <TableCell align="right">{opt.id}</TableCell>
                                 <TableCell align="right">{opt.name}</TableCell>
                                 <TableCell align="right">{opt.credits}</TableCell>
