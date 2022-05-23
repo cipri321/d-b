@@ -14,7 +14,7 @@ const YearSelector = (props) => {
     return (
         <>
             <Select
-                options={years.map((val, idx) => {return {value:val.id, label:val.faculty_id_id +' '+ val.name}})}
+                options={years.map((val, idx) => {return {label:val.id + ' - ' + val.degree +' '+ val.name, value:val.id}})}
                 onChange={props.onChange}
             />
         </>
