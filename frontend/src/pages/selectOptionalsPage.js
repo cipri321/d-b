@@ -64,8 +64,8 @@ const SelectOptionalsPage = () => {
                     <TableBody className = "text">
                         {optionals.map((opt) => (
                             <TableRow key={opt}>
-                                <TableCell align="right"><button onClick = {() => moveUp(opt)}><AiFillCaretUp /></button></TableCell>
-                                <TableCell align="right"><button  onClick = {() => moveDown(opt)}><AiFillCaretDown /></button></TableCell>
+                                <TableCell align="right"><Button onClick = {() => moveUp(opt)}><AiFillCaretUp /></Button></TableCell>
+                                <TableCell align="right"><Button  onClick = {() => moveDown(opt)}><AiFillCaretDown /></Button></TableCell>
                                 <TableCell align="right">{opt.id}</TableCell>
                                 <TableCell align="right">{opt.name}</TableCell>
                                 <TableCell align="right">{opt.credits}</TableCell>
