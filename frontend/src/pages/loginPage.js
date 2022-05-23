@@ -35,8 +35,9 @@ const LoginPage = (props) => {
             alert(error)
         }else {
             userRepository.loginUser({username:data.username, password:data.password}).then(resp => {
-                if(resp)
-                    alert('User logged in')
+                if(resp) {
+                    window.location = '/dashboard';
+                }
                 else
                     alert("There was an error while logging in")
             })

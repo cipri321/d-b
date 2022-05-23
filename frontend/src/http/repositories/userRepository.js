@@ -1,5 +1,6 @@
 import axiosInstance from '../axiosInstance'
 import TokenStorage from '../../utils/tokenUtils'
+import tokenUtils from "../../utils/tokenUtils";
 class UserRepository {
 
     async registerUser(username, password, email, first_name, last_name){
@@ -14,11 +15,13 @@ class UserRepository {
 
 
     async getUserInfo(){
-        let userInfo = await axiosInstance.get('/ainfo/info/').then(resp => resp.data)
-        TokenStorage.storeUserId(userInfo.id)
-        if (userInfo.is_staff === true){
+        let userInfo = JSON.parse(await axiosInstance.get('/ainfo/user_info/').then(resp => resp.data))
+        // console.log(userInfo)
+        TokenStorage.storeUserId(userInfo.user.id)
+        if (userInfo.user.is_staff === true){
             TokenStorage.makeStaff()
         }
+        return userInfo
     }
 
     async loginUser(payload){
@@ -35,6 +38,11 @@ class UserRepository {
 
     async refreshToken(refresh){
         return await axiosInstance.post('/ainfo/login/refresh/', {refresh}).then(resp => resp.data)
+    }
+
+    logout() {
+        tokenUtils.clear();
+        window.location='/login'
     }
 }
 
