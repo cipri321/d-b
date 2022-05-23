@@ -10,46 +10,66 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import {Button} from "@mui/material";
 
-const AddOptionalsPage = () =>{
+import { IconName } from "react-icons/fa";
+
+
+const SelectOptionalsPage = () => {
     const [selectedYear, setSelectedYear] = React.useState(0);
     const [optionals, setOptionals] = React.useState([
-        {id: 7, name: 'VR', credits: 4, yearID: 1},
+        {id: 5, name: 'VR', credits: 4, yearID: 1},
         {id: 2, name: 'Cryptography', credits: 4, yearID: 1},
-        {id: 5, name: 'Blockchain', credits: 7, yearID: 1},
-        {id: 6, name: 'Murder Cases', credits: 3, yearID: 2}
+        {id: 7, name: 'Blockchain', credits: 7, yearID: 1},
+        {id: 1, name: 'Murder Cases', credits: 3, yearID: 2}
     ]);
-    const [name, setName] = React.useState('');
-    const [credits, setCredits] = React.useState('');
-    const [yearID, setYearID] = React.useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        let newOptionals = optionals.slice();
-        let newId = 1;
-        for (let i = 0; i < newOptionals.length; i++){
-            if (newOptionals[i].id > newId) newId = newOptionals[i].id;
+    function moveUp(opt){
+        let index = optionals.findIndex(x => x.id === opt.id)
+        if(index > 0){
+            let newOptionals = optionals.slice();
+            let aux = newOptionals[index];
+            newOptionals[index] = newOptionals[index-1];
+            newOptionals[index-1] = aux;
+            setOptionals(newOptionals);
         }
-        newOptionals.push({id: newId + 1,name: name, credits: credits, yearID: yearID});
-        setOptionals(newOptionals);
+        console.log(index);
+        console.log(optionals);
     }
-    return (
-        <>
-            <Navbar title='Add Optionals'/>
-            <YearSelector onChange={(val)=>{console.log(val);setSelectedYear(val.value)}}/>
 
+    function moveDown(opt){
+        let index = optionals.findIndex(o => o.id === opt.id)
+        if(index < optionals.length - 1){
+            let newOptionals = optionals.slice();
+            let aux = newOptionals[index];
+            newOptionals[index] = newOptionals[index+1];
+            newOptionals[index + 1] = aux;
+            setOptionals(newOptionals);
+        }
+        console.log(optionals.length);
+        console.log(index);
+        console.log(optionals);
+    }
+    return(
+        <>
+            <Navbar title='Select Optionals'/>
+            <YearSelector onChange={(val)=>{console.log(val);setSelectedYear(val.value)}}/>
             <TableContainer component={Paper}>
+
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"></TableCell>
                             <TableCell align="right">ID</TableCell>
                             <TableCell align="right">Optional</TableCell>
                             <TableCell align="right">Credits</TableCell>
                             <TableCell align="right">Year ID</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody className = "text">
                         {optionals.map((opt) => (
                             <TableRow key={opt}>
+                                <TableCell align="right"><button onClick = {() => moveUp(opt)}>^^^</button></TableCell>
+                                <TableCell align="right"><button  onClick = {() => moveDown(opt)}>...</button></TableCell>
                                 <TableCell align="right">{opt.id}</TableCell>
                                 <TableCell align="right">{opt.name}</TableCell>
                                 <TableCell align="right">{opt.credits}</TableCell>
@@ -58,31 +78,11 @@ const AddOptionalsPage = () =>{
                         ))}
                     </TableBody>
                 </Table>
+
             </TableContainer>
-            <p>Propose new optional:</p>
-            <form onSubmit={handleSubmit}>
-                <input
-                    placeholder={'Name'}
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <input
-                    placeholder={'Credits'}
-                    type="number"
-                    value={credits}
-                    onChange={(e) => setCredits(e.target.value)}
-                />
-                <input
-                    placeholder={'Year ID'}
-                    type="number"
-                    value={yearID}
-                    onChange={(e) => setYearID(e.target.value)}
-                />
-                <p></p>
-                <Button variant={'outlined'} type='submit'>Add</Button>
-            </form>
         </>
     )
+
 }
-export default AddOptionalsPage;
+
+export default SelectOptionalsPage;

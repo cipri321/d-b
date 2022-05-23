@@ -50,6 +50,9 @@ const Navbar = (props) => {
     const handleAddOptionals = () => {
         window.location = '/addOptionals'
     }
+    const handleSelectOptionals = () => {
+        window.location = '/selectOptionals'
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -98,6 +101,7 @@ const Navbar = (props) => {
                                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
                                 <MenuItem onClick={handleGrades}>Grades</MenuItem>
                                 <MenuItem onClick={handleAddOptionals}>Add Optionals</MenuItem>
+                                <MenuItem onClick={handleSelectOptionals}>Select Optionals</MenuItem>
                                 <MenuItem onClick={handleContract}>Contract</MenuItem>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </Menu>

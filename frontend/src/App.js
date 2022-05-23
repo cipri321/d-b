@@ -16,6 +16,7 @@ import Grades from "./pages/grades";
 import ContractPage from "./pages/contractPage";
 import EnrollmentPage from "./pages/enrollment";
 import AddOptionalsPage from "./pages/addOptionalsPage";
+import SelectOptionalsPage from "./pages/selectOptionalsPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path='/profile' element={<ProfilePage/>} />
             <Route path='/grades' element={<Grades/>} />
             <Route path='/addOptionals' element={<AddOptionalsPage/>}/>
+            <Route path='/selectOptionals' element={<SelectOptionalsPage/>}/>
             <Route path='/contract' element={<ContractPage/>}/>
             <Route path='/enroll' element={<EnrollmentPage/>}/>
             {/*<Route path="*" element={<PageNotFound/>} />*/}
