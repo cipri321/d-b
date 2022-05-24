@@ -83,11 +83,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'main',
+        'NAME': 'academicinfo',
 
-        'USER': 'newuser',
+        'USER': 'postgres',
 
-        'PASSWORD': 'password',
+        'PASSWORD': 'a',
 
         'HOST': 'localhost',
 

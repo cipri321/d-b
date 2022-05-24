@@ -242,4 +242,27 @@ def teacher_grades(request):
         print(str(e))
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+@api_view(('GET','POST'))
+@csrf_exempt
+@permission_classes([])
+@renderer_classes((JSONRenderer, TemplateHTMLRenderer))
+def teacher_optional_proposition(request):
+    try:
+        if request.method == 'POST':
+            td = Teacher_details.objects.get(user_id=request.user)
+            proposed_optionals = CourseProposition.objects.filter(td)
+            if proposed_optionals.count() >= 2:
+                return Response(status=status.HTTP_202_ACCEPTED, data="Already proposed two courses")
+            body = json.loads(request.body.decode('utf-8'))
+            course_id = body['course_id']
+            course = Course.objects.get(id=course_id)
+            proposition = CourseProposition(td, course)
+            proposition.save()
+            return Response(status=status.HTTP_200_OK, data=model_to_dict(proposition))
+
+    except Exception as e:
+        print(str(e))
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 
